@@ -1,37 +1,65 @@
-﻿Testing software deployed to cloud services like Azure can incure significant
-costs from provisioning and maintaining the services needed for testing.
+﻿Testing software deployed to cloud services like Azure can incure significant costs from provisioning and maintaining the services needed for testing.
 
-Here at Microsoft, we've developed a lightweight test proxy that
-allows us to record app interactions with Azure and play them back on
-demand, reducing our testing costs significantly. we're now excited to
-share this tool with the broader Azure development community and invite
-you to try it out for yourself.
+Here at Microsoft, we've developed a lightweight test proxy that allows us to record app interactions with Azure and play them back on demand, reducing our testing costs significantly. we're now excited to share this tool with the broader Azure development community and invite you to try it out for yourself.
 
-This repository contains a sample project that demonstrates integration
-of the record and playback test proxy with an app that interacts with
-the Azure Cosmos DB Table Storage service.
+This repository contains a sample project that demonstrates integration of the record and playback test proxy with an app that interacts with the Azure Cosmos DB Table Storage service.
 
-You must have the test proxy installed and running before starting the test.
+### Prerequisites
 
-To install the proxy:
+The following prerequisites are required to use this application. Please ensure that you have them all installed locally.
 
-[Install .NET 6.0 or higher](https://dotnet.microsoft.com/download)
-
-Install the test-proxy:
+- [Java Development Kit (JDK)][jdk] with version 8 or above
+- [Maven][maven]
+- [Visual Studio Code][vs_code]
+- [Install .NET 6.0 or higher][dotnet]
+- [Install the test-proxy][test_proxy]
 
 ```
-dotnet tool update azure.sdk.tools.testproxy \--global \--add-source https://pkgs.dev.azure.com/azure-sdk/public/\_packaging/azure-sdk-for-net/nuget/v3/index.json \--version \"1.0.0-dev\*\"
+dotnet tool update azure.sdk.tools.testproxy --global --add-source https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-net/nuget/v3/index.json --version "1.0.0-dev*"
 ```
-After installing the tool, run it in a terminal or cmd window by typing the command 'test-proxy'.
-The included recording file is provided for illustration purposes only,
-it can't be used to play back the test since the resources associated
-with it no longer exist in Azure.
+
+Notes: After installing the tool, run it in a terminal or cmd window by typing the command 'test-proxy'.
+
+### Build and Run the sample
+
+1. Clone the repository.
+
+```
+git clone https://github.com/Azure-Samples/record-playback-test-proxy-demo-java
+cd record-playback-test-proxy-demo-java
+```
+
+2.Before running the project, ensure that the following environment variables are set in `config.properties` file:
+
+- COSMOS_CONNECTION_STRING
+- USE_PROXY
+- PROXY_HOST
+- PROXY_PORT
+- PROXY_MODE
+
+3.Install package and make jar package for this project.
+
+```
+mvn install package
+```
+
+4.Run the sample.
+
+```
+java -cp record-playback-test-proxy-demo-java-1.0-SNAPSHOT.jar com.test.proxy.CosmosDBTablesExample
+```
+
+The included recording file is provided for illustration purposes only, it can't be used to play back the test since the resources associated with it no longer exist in Azure.
 
 This project is intended to be a demo that goes with the following [Azure
-SDK blog post](https://devblogs.microsoft.com/azure-sdk/level-up-your-cloud-testing-game-with-the-azure-sdk-test-proxy/)
+SDK blog post][azure_sdk_blog_post].
 
-The test proxy is compatible with all four major languages and can be
-easily installed using the standard dotnet tool installation process as
-described in the blog post. To use it, you\'ll need to be able to reroute
-your app requests to the test proxy via modifications to the request
-headers.
+The test proxy is compatible with all four major languages and can be easily installed using the standard dotnet tool installation process as described in the blog post. To use it, you'll need to be able to reroute your app requests to the test proxy via modifications to the request headers.
+
+<!-- Links -->
+[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[maven]: https://maven.apache.org/
+[vs_code]: https://code.visualstudio.com/download
+[test_proxy]: https://github.com/Azure/azure-sdk-tools/tree/main/tools/test-proxy/Azure.Sdk.Tools.TestProxy#installation
+[dotnet]: https://dotnet.microsoft.com/download
+[azure_sdk_blog_post]: https://devblogs.microsoft.com/azure-sdk/level-up-your-cloud-testing-game-with-the-azure-sdk-test-proxy/
