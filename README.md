@@ -61,11 +61,7 @@ The included recording file is provided for illustration purposes only, it can't
 This project is intended to be a demo that goes with the following [Azure
 SDK blog post][azure_sdk_blog_post].
 
-The test proxy is compatible with all four major languages and can be
-easily installed using the standard dotnet tool installation process as
-described in the blog post. To use it, you\'ll need to be able to reroute
-your app requests to the test proxy via modifications to the request
-headers.
+The test proxy provides record/playback capabilities compatible with Azure SDKs for .NET, Python, Java, JavaScript, Go, and C++. To use it in your testing, you need to be able to reroute your app requests to the test proxy via modifications to the request headers.
 
 <!-- Links -->
 [jdk]: https://docs.microsoft.com/java/azure/jdk/
