@@ -1,8 +1,15 @@
-﻿Testing software deployed to cloud services like Azure can incure significant costs from provisioning and maintaining the services needed for testing.
+﻿Testing software deployed to cloud services like Azure can incure significant
+costs from provisioning and maintaining the services needed for testing.
 
-Here at Microsoft, we've developed a lightweight test proxy that allows us to record app interactions with Azure and play them back on demand, reducing our testing costs significantly. we're now excited to share this tool with the broader Azure development community and invite you to try it out for yourself.
+Here at Microsoft, we've developed a lightweight test proxy that
+allows us to record app interactions with Azure and play them back on
+demand, reducing our testing costs significantly. we're now excited to
+share this tool with the broader Azure development community and invite
+you to try it out for yourself.
 
-This repository contains a sample project that demonstrates integration of the record and playback test proxy with an app that interacts with the Azure Cosmos DB Table Storage service.
+This repository contains a sample project that demonstrates integration
+of the record and playback test proxy with an app that interacts with
+the Azure Cosmos DB Table Storage service.
 
 ### Prerequisites
 
@@ -22,7 +29,7 @@ Notes: After installing the tool, run it in a terminal or cmd window by typing t
 
 ### Build and Run the sample
 
-1. Clone the repository.
+1.Clone the repository.
 
 ```
 git clone https://github.com/Azure-Samples/record-playback-test-proxy-demo-java
@@ -54,7 +61,11 @@ The included recording file is provided for illustration purposes only, it can't
 This project is intended to be a demo that goes with the following [Azure
 SDK blog post][azure_sdk_blog_post].
 
-The test proxy is compatible with all four major languages and can be easily installed using the standard dotnet tool installation process as described in the blog post. To use it, you'll need to be able to reroute your app requests to the test proxy via modifications to the request headers.
+The test proxy is compatible with all four major languages and can be
+easily installed using the standard dotnet tool installation process as
+described in the blog post. To use it, you\'ll need to be able to reroute
+your app requests to the test proxy via modifications to the request
+headers.
 
 <!-- Links -->
 [jdk]: https://docs.microsoft.com/java/azure/jdk/
