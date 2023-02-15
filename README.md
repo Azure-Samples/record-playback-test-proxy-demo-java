@@ -1,11 +1,6 @@
-﻿Testing software deployed to cloud services like Azure can incure significant
-costs from provisioning and maintaining the services needed for testing.
+Testing is a crucial step in the software development process, including software deployed to the cloud. Testing software against a live cloud service like Azure can be costly, since services must be provisioned and maintained in order to run the tests.
 
-Here at Microsoft, we've developed a lightweight test proxy that
-allows us to record app interactions with Azure and play them back on
-demand, reducing our testing costs significantly. we're now excited to
-share this tool with the broader Azure development community and invite
-you to try it out for yourself.
+The Azure SDK team has developed a lightweight test proxy that allows us to record app interactions with Azure and play them back on demand, significantly reducing our testing costs. We’re now excited to share this tool with the broader Azure development community and invite you to try it out for yourself.
 
 This repository contains a sample project that demonstrates integration
 of the record and playback test proxy with an app that interacts with
