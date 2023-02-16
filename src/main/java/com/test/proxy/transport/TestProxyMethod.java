@@ -7,6 +7,9 @@ package com.test.proxy.transport;
 import com.azure.core.http.HttpMethod;
 import com.azure.core.http.HttpRequest;
 import com.azure.core.util.Context;
+import com.azure.core.util.serializer.JsonSerializerProviders;
+
+import java.util.HashMap;
 
 public class TestProxyMethod {
 
@@ -21,7 +24,12 @@ public class TestProxyMethod {
                         "https://" + testProxyVariables.getProxyHost()
                                 + ":" + testProxyVariables.getProxyPort()
                                 + "/" + testProxyVariables.getProxyMode()
-                                + "/start"), Context.NONE)
+                                + "/start")
+                        .setBody(JsonSerializerProviders.createInstance(true)
+                                .serializeToBytes(new HashMap<String, String>() {{
+                                    put("x-recording-file",
+                                            testProxyVariables.getCurrentRecordingPath());
+                                }})), Context.NONE)
                 .getHeaderValue("x-recording-id");
     }
 
