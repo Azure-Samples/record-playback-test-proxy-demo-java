@@ -13,9 +13,6 @@ import com.azure.data.tables.TableServiceClientBuilder;
 import com.test.proxy.transport.TestProxyMethod;
 import com.test.proxy.transport.TestProxyVariables;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Objects;
 import java.util.Properties;
@@ -31,6 +28,7 @@ public class CosmosDBTablesExample {
     // Beginning of app code.
     public static void main(String[] args) {
 
+        boolean hasException = false;
         TestProxyVariables testProxyVariables = null;
 
         try {
@@ -65,8 +63,7 @@ public class CosmosDBTablesExample {
                             .httpClient(testProxyVariables.getHttpClient())
                             .buildClient();
             TableClient tableClient =
-                    tableServiceClient
-                            .createTableIfNotExists("adventureworks");
+                    tableServiceClient.createTableIfNotExists("adventureworks");
             if (Objects.isNull(tableClient)) {
                 tableClient = tableServiceClient.getTableClient("adventureworks");
             }
@@ -94,15 +91,13 @@ public class CosmosDBTablesExample {
 
             System.out.println("Multiple products:");
             tableClient.listEntities(
-                    new ListEntitiesOptions()
-                            .setFilter("PartitionKey eq 'gear-surf-surfboards'"),
+                    new ListEntitiesOptions().setFilter("PartitionKey eq 'gear-surf-surfboards'"),
                     Duration.ofSeconds(60), Context.NONE)
-                    .forEach(tableEntity ->
-                            System.out.println(
-                                    tableEntity.getProperties().get("Name")));
+                    .forEach(tableEntity -> System.out.println(tableEntity.getProperties().get("Name")));
 
             tableClient.deleteTable();
         } catch (Exception ex) {
+            hasException = true;
             ex.printStackTrace();
         } finally {
             //=============================================================================//
@@ -112,9 +107,18 @@ public class CosmosDBTablesExample {
             if (Objects.nonNull(testProxyVariables)
                     && testProxyVariables.isUseProxy()
                     && Objects.nonNull(testProxyVariables.getHttpClient())) {
-                TestProxyMethod.stopTestProxy(testProxyVariables);
+                try {
+                    TestProxyMethod.stopTestProxy(testProxyVariables);
+                } catch (Exception ex) {
+                    hasException = true;
+                    ex.printStackTrace();
+                }
             }
         }
+        if (hasException) {
+            System.exit(1);
+        }
+        System.exit(0);
     }
 
 }

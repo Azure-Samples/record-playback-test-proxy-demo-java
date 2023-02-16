@@ -5,19 +5,18 @@
 package com.test.proxy.transport;
 
 import com.azure.core.http.HttpClient;
-import com.test.proxy.http.ApacheHttpClientProvider;
 
 import java.io.File;
 import java.nio.file.Paths;
 
 public class TestProxyVariables {
-    private boolean useProxy = true;
-    private String proxyMode = "record";
-    private String proxyHost = "localhost";
-    private Integer proxyPort = 5001;
-    private String currentRecordingPath = null;
-    private String recordingId = null;
-    private HttpClient httpClient = null;
+    private boolean useProxy;
+    private String proxyMode;
+    private String proxyHost;
+    private Integer proxyPort;
+    private String currentRecordingPath;
+    private String recordingId;
+    private HttpClient httpClient;
 
     public TestProxyVariables(boolean useProxy, String proxyHost,
                               Integer proxyPort, String proxyMode) {
@@ -28,12 +27,8 @@ public class TestProxyVariables {
         this.currentRecordingPath =
                 Paths.get(System.getProperty("user.dir"),
                                 "recordings", "RecordAndPlaybackTestProxyDemo.json")
-                        .toString().replace(File.separator, "./");
-        try {
-            this.httpClient = new ApacheHttpClientProvider().createInstance(this);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+                        .toString().replace(File.separator, "/");
+        this.httpClient = new TestProxyTransport(this);
     }
 
     public boolean isUseProxy() {
