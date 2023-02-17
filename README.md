@@ -52,7 +52,7 @@ mvn install package
 4.Run the sample.
 
 ```
-java -cp record-playback-test-proxy-demo-java-1.0-SNAPSHOT.jar com.test.proxy.CosmosDBTablesExample
+java -jar record-playback-test-proxy-demo-java-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 
 The included recording file is provided for illustration purposes only, it can't be used to play back the test since the resources associated with it no longer exist in Azure.
