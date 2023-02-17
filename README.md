@@ -1,3 +1,7 @@
+This project is a Java demo that pairs with an [Azure
+SDK blog post](https://aka.ms/azsdk/test-proxy) about reducing cloud testing costs.
+=
+
 Testing is a crucial step in the software development process, including software deployed to the cloud. Testing software against a live cloud service like Azure can be costly, since services must be provisioned and maintained in order to run the tests.
 
 The Azure SDK team has developed a lightweight test proxy that allows us to record app interactions with Azure and play them back on demand, significantly reducing our testing costs. We’re now excited to share this tool with the broader Azure development community and invite you to try it out for yourself.
@@ -52,9 +56,6 @@ java -cp record-playback-test-proxy-demo-java-1.0-SNAPSHOT.jar com.test.proxy.Co
 ```
 
 The included recording file is provided for illustration purposes only, it can't be used to play back the test since the resources associated with it no longer exist in Azure.
-
-This project is intended to be a demo that goes with the following [Azure
-SDK blog post][azure_sdk_blog_post].
 
 The test proxy provides record/playback capabilities compatible with Azure SDKs for .NET, Python, Java, JavaScript, Go, and C++. To use it in your testing, you need to be able to reroute your app requests to the test proxy via modifications to the request headers.
 
